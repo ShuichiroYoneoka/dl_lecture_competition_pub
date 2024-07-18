@@ -4,7 +4,7 @@ from omegaconf import DictConfig
 from torch.utils.data import DataLoader
 import random
 import numpy as np
-from src.models.evflownet_final import EVFlowNet
+from src.models.evflownet import EVFlowNet
 from src.datasets import DatasetProvider
 from enum import Enum, auto
 from src.datasets import train_collate
