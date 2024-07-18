@@ -168,9 +168,12 @@ def main(args: DictConfig):
             batch_flow = (batch_flow[:, 0:4, :, :] + batch_flow[:, 4:8, :, :]) / 2
 
             print(f"batch_flow size: {batch_flow.size()}")
+            batch_flow = batch_flow.view(1, 4, 2, 480, 640) #平均を取ってチャネル数を2に減らした
+            batch_flow = batch_flow.mean(dim=1)
+            print(f"view_batch_flow: {batch_flow.size()}")
             flow = torch.cat((flow, batch_flow), dim=0)  # [N, 2, 480, 640]
-            print(f"flow size: {flow.size()}")
-            
+            print(f"flow size: {flow.size()}")            
+           
         print("test done")
     # ------------------
     #  save submission
